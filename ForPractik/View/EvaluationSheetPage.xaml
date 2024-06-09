@@ -1,0 +1,94 @@
+﻿<Page x:Class="ForPractik.View.EvaluationSheetPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="EvaluationSheetPage">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Оценочный лист" FontSize="18" FontWeight="Bold" 
+Margin="20,10,0,20"/>
+
+            <!-- listokpk -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Лист КПК:" VerticalAlignment="Center" Height="30" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="listokpkComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+             
+                </ComboBox>
+            </StackPanel>
+
+            <!-- questionnaire -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Анкета:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="questionnaireComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+               
+                </ComboBox>
+            </StackPanel>
+
+            <!-- diary -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Дневник:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="diaryComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+                   
+                </ComboBox>
+            </StackPanel>
+
+            <!-- agreement -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Договор:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="agreementComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+                    
+                </ComboBox>
+            </StackPanel>
+
+            <!-- review -->
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Рецензия:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="reviewComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+                    
+                </ComboBox>
+            </StackPanel>
+
+            <!-- protection -->
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Защита:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="protectionComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+                    
+                </ComboBox>
+            </StackPanel>
+
+            <!-- report -->
+            <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Отчет:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <ComboBox x:Name="reportComboBox" Margin="5" Width="200" Style="{StaticResource ComboBoxFlatStyle}">
+              
+                </ComboBox>
+            </StackPanel>
+
+            <!-- grade -->
+            <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Оценка:" VerticalAlignment="Center" Width="175" Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox x:Name="gradeTextBox" Margin="5" Width="200" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
+                <Button Content="Назад" Style="{StaticResource GelButton}" Width="175" Height="30"
+        Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+        HorizontalAlignment="Left" Margin="40 0 0 30"
+        Click="btn_Back"></Button>
+
+                <Button Content="Сохранить" Style="{StaticResource GelButton}" Width="175" Height="30"
+Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+HorizontalAlignment="Left" Margin="380 0 0 30" Click="btn_SaveGrade"
+></Button>
+            </StackPanel>
+
+        </StackPanel>
+
+        
+    </Grid>
+</Page>

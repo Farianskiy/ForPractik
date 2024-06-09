@@ -1,0 +1,43 @@
+﻿<Page x:Class="ForPractik.View.AddStudentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="AddStudentPage">
+
+    <Grid>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
+            <TextBlock Text="Управление студентами" FontWeight="Bold" FontSize="16" 
+               Style="{StaticResource BlueTextBlockStyle}" Margin="0,0,0,10"
+                       HorizontalAlignment="Center"/>
+
+            <!-- Ввод данных для добавления/редактирования студента -->
+            <TextBox  Name="txtSurname" Text="{Binding SurName}" Tag="Фамилия" Style="{StaticResource placeHolder}" Margin="0 0 0 10"></TextBox>
+
+            <TextBox  Name="txtName" Text="{Binding Name}" Tag="Имя" Style="{StaticResource placeHolder}" Margin="0 0 0 10"></TextBox>
+
+            <TextBox  Name="txtPatronymic" Text="{Binding Patronymic}" Tag="Отчество" Style="{StaticResource placeHolder}" Margin="0 0 0 10"></TextBox>
+
+            <TextBox  Name="txtGroupName" Text="{Binding Group}" Tag="Наименование группы" Style="{StaticResource placeHolder}" Margin="0 0 0 10"></TextBox>
+            
+            <!-- Кнопки -->
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0 20 0 0">
+
+                <Button Content="Назад" Style="{StaticResource GelButton}" Width="175" Height="30"
+                    Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left" Margin="160 0 0 30" Click="btn_Back">
+                </Button>
+
+                <Button Content="Добавить" Style="{StaticResource GelButton}" Width="175" Height="30"
+                    Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left" Margin="450 0 0 30" Click="btn_AddStudentSave">
+                </Button>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Page>

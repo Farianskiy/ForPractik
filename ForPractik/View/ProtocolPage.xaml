@@ -1,0 +1,107 @@
+﻿<Page x:Class="ForPractik.View.ProtocolPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="ProtocolPage">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Протокол по ТБ" FontSize="18" FontWeight="Bold" 
+               Margin="20,10,0,20"/>
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+        Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
+                    <ComboBoxItem Content="1 курс"/>
+                    <ComboBoxItem Content="2 курс"/>
+                    <ComboBoxItem Content="3 курс"/>
+                    <ComboBoxItem Content="4 курс"/>
+                </ComboBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+        Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
+                          Style="{StaticResource ComboBoxFlatStyle}">
+                    
+                </ComboBox>
+                
+                
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Специальность:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+        Style="{StaticResource BlueTextBlockStyle}"/>
+                    <ComboBox x:Name="ComboSpecialties" Width="200" Margin="10"
+    Style="{StaticResource ComboBoxFlatStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock x:Name="ChairmanTextBlock" Text="Председатель комиссии:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+            Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <TextBox x:Name="ChairmanTextBox" Width="200" Margin="10"/>
+
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Члены комиссии" FontSize="15" FontWeight="Bold" 
+   Margin="20,10,0,20"/>
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock  Text="Зав. отделением:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                    <TextBox x:Name="DepartmentHeadTextBox" Width="200" Margin="10"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock  Text="Куратор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                    <TextBox x:Name="GroupCuratorTextBox" Width="200" Margin="10"/>
+
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock  Text="Дата:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <TextBox x:Name="DateTextBox" Width="200" Margin="10"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Назад" Style="{StaticResource GelButton}" Width="175" Height="30"
+        Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+        HorizontalAlignment="Left" Margin="40 0 0 30"
+        Click="btn_Bacl"></Button>
+
+            <Button Content="Заполнить" Style="{StaticResource GelButton}" Width="175" Height="30"
+Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+HorizontalAlignment="Left" Margin="380 0 0 30" Click="FillDocumentButton_Click"
+></Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,123 @@
+﻿<Page x:Class="ForPractik.View.OpeningPracticePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1200"
+      Title="OpeningPracticePage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock Text="Открытие учета практики" FontSize="18" FontWeight="Bold" 
+   Margin="20,10,0,20"/>
+
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
+                    <ComboBoxItem Content="1 курс"/>
+                    <ComboBoxItem Content="2 курс"/>
+                    <ComboBoxItem Content="3 курс"/>
+                    <ComboBoxItem Content="4 курс"/>
+                </ComboBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
+                  Style="{StaticResource ComboBoxFlatStyle}">
+
+                </ComboBox>
+
+
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock  Text="Дата начала практики:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <TextBox x:Name="StartOfPractice" Width="200" Margin="10"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock  Text="Дата окончания практики:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <TextBox x:Name="EndOfPractice" Width="200" Margin="10"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock  Text="Количество часов:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <TextBox x:Name="NumberOfHours" Width="200" Margin="10"/>
+
+            </StackPanel>
+
+
+
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="Тип практики:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <ComboBox x:Name="TypeOfPractice" Width="200" Margin="10" Style="{StaticResource ComboBoxFlatStyle}">
+                    <ComboBoxItem Content="Учебная"/>
+                    <ComboBoxItem Content="Производственная"/>
+                    <ComboBoxItem Content="Пред Дипломная"/>
+                </ComboBox>
+
+            </StackPanel>
+
+            
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Top" Margin="0 20 0 0">
+            <TextBlock Text="Модули практики:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+            <ListBox SelectionMode="Multiple" Name="ModulesListBox" VerticalAlignment="Center" Margin="10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Button Content="Назад" Style="{StaticResource GelButton}" Width="175" Height="30"
+        Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+        HorizontalAlignment="Left" Margin="40 0 0 30"
+        Click="btn_Bacl"></Button>
+
+            <Button Content="Заполнить" Style="{StaticResource GelButton}" Width="175" Height="30"
+Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+HorizontalAlignment="Left" Margin="380 0 0 30" Click="btn_OpenAccountingPractices"
+></Button>
+        </StackPanel>
+    </Grid>
+</Page>

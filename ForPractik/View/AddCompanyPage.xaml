@@ -1,0 +1,155 @@
+﻿<Page x:Class="ForPractik.View.AddCompanyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="AddCompanyPage">
+
+    <Grid>
+        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+            
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="20">
+                <TextBlock Text="Добавление предприятия и реквизитов" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"
+                           HorizontalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                        <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
+                            <ComboBoxItem Content="1 курс"/>
+                            <ComboBoxItem Content="2 курс"/>
+                            <ComboBoxItem Content="3 курс"/>
+                            <ComboBoxItem Content="4 курс"/>
+                        </ComboBox>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                        <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
+                  Style="{StaticResource ComboBoxFlatStyle}">
+
+                        </ComboBox>
+
+
+
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Название предприятия:" VerticalAlignment="Center"
+                               Width="150"
+                       Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="CompanyName" Width="500" Margin="10"
+                             Text="{Binding CompanyName}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="ФИО руководителя:" VerticalAlignment="Center"
+               Width="150"
+       Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="FullNameOfTheHead" Width="400" Margin="10"
+             Text="{Binding FullNameOfTheHead}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Должность руководителя:" VerticalAlignment="Center"
+               Width="150"
+       Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="JobTitle" Width="400" Margin="10"
+             Text="{Binding JobTitle}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="ИНН:" VerticalAlignment="Center"
+                               Width="150"
+                       Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="TIN" Width="350" Margin="10"
+                             Text="{Binding Tin}"/>
+
+                    <TextBlock Text="КПП:" VerticalAlignment="Center"
+                                Width="150" Margin="50 0 0 0"
+                                Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="KPP" Width="350" Margin="10"
+                             Text="{Binding Kpp}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="ОГРН:" VerticalAlignment="Center"
+                               Width="150"
+                       Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="OPRN" Width="350" Margin="10"
+                             Text="{Binding Oprn}"/>
+
+                    <TextBlock Text="БИК:" VerticalAlignment="Center"
+           Width="150" Margin="50 0 0 0"
+   Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="BIC" Width="350" Margin="10"
+                             Text="{Binding Bic}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Расчетный счет:" VerticalAlignment="Center"
+                               Width="150"
+                       Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="CheckingAccount" Width="350" Margin="10"
+                             Text="{Binding CheckingAccount}"/>
+
+                    <TextBlock Text="Корпоративный счет:" VerticalAlignment="Center"
+            Width="150" Margin="50 0 0 0"
+    Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="CorporateAccount" Width="350" Margin="10"
+                             Text="{Binding CorporateAccount}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Банк:" VerticalAlignment="Center"
+                               Width="150"
+                       Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="Bank" Width="350" Margin="10"
+                             Text="{Binding Bank}"/>
+
+                    <TextBlock Text="Телефон:" VerticalAlignment="Center"
+           Width="150" Margin="50 0 0 0"
+   Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="Telephone" Width="350" Margin="10"
+                             Text="{Binding Telephone}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Адрес:" VerticalAlignment="Center"
+                               Width="150"
+                       Style="{StaticResource BlueTextBlockStyle}"/>
+                    <TextBox x:Name="Address" Width="350" Margin="10"
+                             Text="{Binding Address}"/>
+                </StackPanel>
+
+                <!-- Кнопки -->
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0 20 0 0">
+
+                    <Button Content="Назад" Style="{StaticResource GelButton}" Width="175" Height="30"
+        Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+        HorizontalAlignment="Left" Margin="160 0 0 30" Click="btn_Back">
+                    </Button>
+
+                    <Button Content="Добавить" Style="{StaticResource GelButton}" Width="175" Height="30"
+        Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+        HorizontalAlignment="Left" Margin="450 0 0 30" Click="btn_AddCompanySave">
+                    </Button>
+
+                </StackPanel>
+            </StackPanel>
+            
+        </ScrollViewer>
+        
+    </Grid>
+</Page>

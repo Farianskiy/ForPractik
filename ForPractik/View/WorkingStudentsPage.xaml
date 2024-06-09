@@ -1,0 +1,68 @@
+﻿<Page x:Class="ForPractik.View.WorkingStudentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="WorkingStudentsPage">
+
+    <Grid>
+        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Hidden" 
+              VerticalScrollBarVisibility="Hidden">
+
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
+
+                <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
+
+                    <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                    <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
+                        <ComboBoxItem Content="1 курс"/>
+                        <ComboBoxItem Content="2 курс"/>
+                        <ComboBoxItem Content="3 курс"/>
+                        <ComboBoxItem Content="4 курс"/>
+                    </ComboBox>
+
+                    <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
+
+                        <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                        <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
+                                    Style="{StaticResource ComboBoxFlatStyle}" 
+                                  SelectionChanged="SecondComboBox_SelectionChanged">
+
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <DataGrid x:Name="DGridStudentWordking" AutoGenerateColumns="False" Margin="0,10,10,0" 
+                  CanUserAddRows="False" HorizontalAlignment="Stretch"
+                  FontSize="16" RowHeight="40" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО студента" Binding="{Binding FullName}" Width="380"/>
+                        <DataGridTextColumn Header="Предприятие" Binding="{Binding CompanyName}" Width="395"/>
+                        <DataGridTextColumn Header="Руководитель предприятия" Binding="{Binding FullnameOfTheHead}" Width="395"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Center">
+                    <Button Click="btn_Back" Width="175" Height="30"
+            Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
+            Content="Назад" Margin="10 0 10 0" >
+                    </Button>
+                    <Button Click="btn_DeleteStudent" Width="175" Height="30"
+Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
+Content="Удалить" Margin="70,0,10,0">
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
