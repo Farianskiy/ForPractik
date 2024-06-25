@@ -118,11 +118,20 @@
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="btn_ListDistributionPage"
                     Content="Список распределения">
                 </Button>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenAddModules}"
-                    Content="Управление модулями">
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="btn_ListContactPhonePage"
+                    Content="Список контактных телефонов">
                 </Button>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenAddCompany}"
-                    Content="Управление предприятиями">
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="AttestationListOKPage"
+                    Content="Лист ОК">
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="AttestationListPKPage"
+                    Content="Лист ПК">
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="ProgramIndustrialPracticePage"
+    Content="Производственная программа">
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="ProgramEducationalPracticePage"
+    Content="Учебная программа">
                 </Button>
             </StackPanel>
         </Grid>

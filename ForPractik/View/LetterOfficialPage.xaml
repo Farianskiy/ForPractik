@@ -9,87 +9,69 @@
       Title="LetterOfficialPage">
 
     <Grid>
-        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Hidden" 
-              VerticalScrollBarVisibility="Hidden">
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
 
-            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
+
+                <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
+                    <ComboBoxItem Content="1 курс"/>
+                    <ComboBoxItem Content="2 курс"/>
+                    <ComboBoxItem Content="3 курс"/>
+                    <ComboBoxItem Content="4 курс"/>
+                </ComboBox>
 
                 <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
 
-                    <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+                    <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
 Style="{StaticResource BlueTextBlockStyle}"/>
 
-                    <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
-                        <ComboBoxItem Content="1 курс"/>
-                        <ComboBoxItem Content="2 курс"/>
-                        <ComboBoxItem Content="3 курс"/>
-                        <ComboBoxItem Content="4 курс"/>
-                    </ComboBox>
-
-                    <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
-
-                        <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
-Style="{StaticResource BlueTextBlockStyle}"/>
-
-                        <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
+                    <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
                                     Style="{StaticResource ComboBoxFlatStyle}" 
                                   SelectionChanged="SecondComboBox_SelectionChanged">
 
-                        </ComboBox>
-                    </StackPanel>
+                    </ComboBox>
                 </StackPanel>
+            </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Horizontal">
-
-                        <TextBlock  Text="Руководителем практики от образовательной организации:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
-Style="{StaticResource BlueTextBlockStyle}"/>
-
-                        <TextBox x:Name="HeadOfThePractice" Width="200" Margin="10"/>
-
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-
-                        <TextBlock  Text="Заместитель директора по М и ПП:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
-Style="{StaticResource BlueTextBlockStyle}"/>
-
-                        <TextBox x:Name="AssociateDirector" Width="200" Margin="10"/>
-
-                    </StackPanel>
-                </StackPanel>
-
-
-                <DataGrid x:Name="DGridStudentWordking" AutoGenerateColumns="False" Margin="0,10,10,0" 
-                  CanUserAddRows="False" HorizontalAlignment="Stretch"
-                  FontSize="16" RowHeight="40" IsReadOnly="True">
+            <ScrollViewer>
+                <DataGrid x:Name="DGridStudentPractik" AutoGenerateColumns="False" Margin="0,10,10,0" 
+CanUserAddRows="False" HorizontalAlignment="Stretch"
+FontSize="16" RowHeight="40" IsReadOnly="True" Height="450">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ФИО студента" Binding="{Binding FullName}" Width="300"/>
-                        <DataGridTextColumn Header="Предприятие" Binding="{Binding CompanyName}" Width="300"/>
-                        <DataGridTextColumn Header="Руководитель предприятия" Binding="{Binding FullnameOfTheHead}" Width="300"/>
-
-                        <DataGridTemplateColumn Header="Письмо" Width="240">
+                        <DataGridTextColumn Header="Student ID" Binding="{Binding StudentId}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding Student}"  Width="475">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Padding" Value="10,0,0,0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Письмо" Width="340">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Письмо" Name="BtnGrade" Click="FillDocumentButton_Click" 
-                                            Style="{StaticResource GelButton}" Width="195" Height="30" 
-                                            VerticalAlignment="Center"
-                                            Tag="{Binding CheckListId}" />
+                  Style="{StaticResource GelButton}" Width="195" Height="30" 
+                  VerticalAlignment="Center"
+                  Tag="{Binding CheckListId}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        
                     </DataGrid.Columns>
                 </DataGrid>
+            </ScrollViewer>
 
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Center">
-                    <Button Click="btn_Back" Width="175" Height="30"
+
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Center">
+                <Button Click="btn_Back" Width="175" Height="30"
             Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
             Content="Назад" Margin="10 0 10 0" >
-                    </Button>
-                    
-                </StackPanel>
-
+                </Button>
             </StackPanel>
-        </ScrollViewer>
+
+        </StackPanel>
     </Grid>
 </Page>

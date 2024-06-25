@@ -40,5 +40,30 @@ namespace ForPractik.View
         {
             Manager.MainFrame.Navigate(new LetterOfficialPage());
         }
+
+        private void btn_ListContactPhonePage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ListContactPhonePage());
+        }
+
+        private void AttestationListOKPage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AttestationListOKPage());
+        }
+
+        private void AttestationListPKPage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AttestationListPKPage());
+        }
+
+        private void ProgramIndustrialPracticePage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ProgramIndustrialPracticePage());
+        }
+
+        private void ProgramEducationalPracticePage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ProgramEducationalPracticePage());
+        }
     }
 }

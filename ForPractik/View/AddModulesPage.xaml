@@ -17,7 +17,7 @@
                 <TextBlock Text="Название модуля:" VerticalAlignment="Center"
                            Width="150"
                    Style="{StaticResource BlueTextBlockStyle}"/>
-                <TextBox x:Name="txtModuleName" Width="200" Margin="10"/>
+                <TextBox x:Name="txtModuleName" Width="700" Margin="10"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="50,10,0,10">

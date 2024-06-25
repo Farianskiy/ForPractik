@@ -35,5 +35,10 @@ namespace ForPractik.View
         {
             Manager.MainFrame.Navigate(new AccountingStudentsPractice());
         }
+
+        private void ClosingPracticePage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ClosingPracticePage());
+        }
     }
 }

@@ -1,5 +1,7 @@
-﻿using ForPractik.Model;
+﻿using DeepMorphy;
+using ForPractik.Model;
 using ForPractik.ViewModel;
+using Humanizer;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,7 @@ namespace ForPractik.View
     /// </summary>
     public partial class LetterOfficialPage : Page
     {
+
         public LetterOfficialPage()
         {
             InitializeComponent();
@@ -74,14 +77,27 @@ namespace ForPractik.View
             }
         }
 
+        private HashSet<int> displayedStudentIds = new HashSet<int>();
+
         private void SecondComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SecondComboBox.SelectedItem != null)
             {
                 string selectedGroup = SecondComboBox.SelectedItem.ToString();
-                List<StudentEnterpriseDetails> studentEnterpriseDetails = DatabaseContext.GetContext().GetStudentEnterpriseDetails(selectedGroup);
+                List<StudentPractik> studentPractikList = DatabaseContext.GetContext().GetPracticeDetailsByGroupNameOne(selectedGroup);
 
-                DGridStudentWordking.ItemsSource = studentEnterpriseDetails;
+                List<StudentPractik> uniqueStudents = new List<StudentPractik>();
+
+                foreach (var student in studentPractikList)
+                {
+                    if (!displayedStudentIds.Contains(student.StudentId)) // Changed from `StudentPractik.StudentId`
+                    {
+                        uniqueStudents.Add(student);
+                        displayedStudentIds.Add(student.StudentId); // Changed from `student.Id`
+                    }
+                }
+
+                DGridStudentPractik.ItemsSource = uniqueStudents;
             }
         }
 
@@ -91,48 +107,28 @@ namespace ForPractik.View
             Button button = sender as Button;
             if (button != null)
             {
+                string groupName = SecondComboBox.Text;
                 // Получаем данные студента из строки DataGrid
-                var selectedStudent = button.DataContext as StudentEnterpriseDetails;
+                var selectedStudent = button.DataContext as StudentPractik;
                 if (selectedStudent != null)
                 {
-                    FillWordDocument(selectedStudent);
+                    // Переходим на страницу редактирования, передавая нужные данные
+                    Manager.MainFrame.Navigate(new FormLetterPage(selectedStudent.Student, selectedStudent.Placeofpractice, selectedStudent.Headofpractice, groupName, selectedStudent.EnterpriseId));
+                }
+                else
+                {
+                    MessageBox.Show("Выберите студента из списка!");
                 }
             }
         }
 
-        public void FillWordDocument(StudentEnterpriseDetails student)
-        {
-            using (WordDocumentManager docManager = new WordDocumentManager())
-            {
-                // Открываем шаблон документа
-                string templatePath = "C:\\Users\\Farianskiy\\Desktop\\ForPractik\\ForPractik\\Resources\\ListDistribution.docx";
-                docManager.OpenDocument(templatePath);
-
-                // Получаем выбранную группу из ComboBox
-                string groupName = SecondComboBox.Text;
-
-                // Получаем данные из полей ввода
-                string headOfThePractice = HeadOfThePractice.Text;
-                string associateDirector = AssociateDirector.Text;
 
 
 
-                // Вставляем данные студента в документ
-                docManager.FillDocumentWithStudentData(student, headOfThePractice, associateDirector);
+        
 
-                // Сохраняем заполненный документ по указанному пути
-                SaveFileDialog saveFileDialog = new SaveFileDialog
-                {
-                    Filter = "Документ Word (*.docx)|*.docx"
-                };
 
-                if (saveFileDialog.ShowDialog() == true)
-                {
-                    docManager.SaveAndCloseDocument(saveFileDialog.FileName);
-                    MessageBox.Show("Документ успешно заполнен и сохранен.", "Успех");
+        
 
-                }
-            }
-        }
     }
 }

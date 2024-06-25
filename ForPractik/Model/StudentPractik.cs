@@ -14,5 +14,8 @@ namespace ForPractik.Model
         public string Placeofpractice { get; set; }
         public string Headofpractice { get; set; }
         public int CheckListId { get; set; }
+        public int EnterpriseId { get; set; } // Новое поле для ID предприятия
     }
+
+
 }

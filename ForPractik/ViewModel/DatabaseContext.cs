@@ -28,11 +28,16 @@ namespace ForPractik.ViewModel
             return _context;
         }
 
+        public static DatabaseContext CreateContext()
+        {
+            return new DatabaseContext();
+        }
+
         private NpgsqlConnection connection;
 
         public DatabaseContext()
         {
-            string connectionString = "Host=127.0.0.1;Port=5432;Database=educationalpracticetri;Username=postgres;Password=122";
+            string connectionString = "Host=127.0.0.1;Port=5432;Database=TestDB;Username=postgres;Password=122";
             connection = new NpgsqlConnection(connectionString);
         }
 
@@ -157,6 +162,48 @@ namespace ForPractik.ViewModel
             }
         }
 
+        public void AddStudentListWithDependencies(List<Student> students)
+        {
+            try
+            {
+                OpenConnection();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    foreach (var student in students)
+                    {
+                        // Получение Id группы по её имени
+                        int groupId = GetGroupIdByGroupName(student.Group);
+
+                        // Создаем SQL запрос для вставки студента
+                        string insertStudentQuery = "INSERT INTO public.students (surname, name, patronymic, groupid, works_there) VALUES (@Surname, @Name, @Patronymic, @GroupId, @WorksThere)";
+                        NpgsqlCommand insertStudentCommand = new NpgsqlCommand(insertStudentQuery, connection);
+                        insertStudentCommand.Parameters.AddWithValue("@Surname", student.SurName);
+                        insertStudentCommand.Parameters.AddWithValue("@Name", student.Name);
+                        insertStudentCommand.Parameters.AddWithValue("@Patronymic", student.Patronymic);
+                        insertStudentCommand.Parameters.AddWithValue("@GroupId", groupId);
+                        insertStudentCommand.Parameters.AddWithValue("@WorksThere", false);
+
+                        // Выполняем запрос для вставки студента
+                        insertStudentCommand.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                }
+
+                MessageBox.Show("Студенты успешно добавлены!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при добавлении студентов: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+
 
         public int GetGroupIdByGroupName(string groupName)
         {
@@ -247,7 +294,7 @@ namespace ForPractik.ViewModel
                 }
                 else
                 {
-                    Console.WriteLine("Группа не найдена в базе данных.");
+                    MessageBox.Show("Группа не найдена в базе данных.");
                 }
             }
             catch (Exception ex)
@@ -280,7 +327,7 @@ namespace ForPractik.ViewModel
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка при удалении студентов: " + ex.Message);
+                MessageBox.Show("Ошибка при удалении студентов: " + ex.Message);
                 throw; // Вы можете выбросить исключение, чтобы обработать его в вызывающем коде
             }
             finally
@@ -332,16 +379,16 @@ namespace ForPractik.ViewModel
 
         public List<string> GetSpecialties()
         {
-            List<string> specialtiesList = new List<string>();
-            string query = "SELECT Specialization FROM Specialties";
-            DataTable specialtiesTable = SelectData(query);
+            List<string> qualificationsList = new List<string>();
+            string query = "SELECT Qualification FROM Specialties";
+            DataTable qualificationsTable = SelectData(query);
 
-            foreach (DataRow row in specialtiesTable.Rows)
+            foreach (DataRow row in qualificationsTable.Rows)
             {
-                specialtiesList.Add(row["Specialization"].ToString());
+                qualificationsList.Add(row["Qualification"].ToString());
             }
 
-            return specialtiesList;
+            return qualificationsList;
         }
 
         public List<string> GetCurators()
@@ -361,7 +408,7 @@ namespace ForPractik.ViewModel
 
         public int GetSpecializationIdByName(string specializationName)
         {
-            string query = $"SELECT Id FROM Specialties WHERE Specialization = '{specializationName}'";
+            string query = $"SELECT Id FROM public.specialties WHERE qualification = '{specializationName}'";
             DataTable result = SelectData(query);
             return result.Rows.Count > 0 ? Convert.ToInt32(result.Rows[0]["Id"]) : -1; // Возвращаем Id специальности или -1, если не найдено
         }
@@ -1014,6 +1061,74 @@ namespace ForPractik.ViewModel
             return practiceDetails;
         }
 
+        public List<StudentPractik> GetPracticeDetailsByGroupNameOne(string groupName)
+        {
+            List<StudentPractik> practiceDetails = new List<StudentPractik>();
+
+            try
+            {
+                DatabaseContext.GetContext().OpenConnection();
+
+                string sql = @"
+        SELECT 
+            p.id AS practiceId,
+            s.id AS studentId,
+            s.surname || ' ' || s.name || ' ' || COALESCE(s.patronymic, '') AS full_name,
+            p.placeofpractice,
+            p.headofpractice,
+            p.checklist AS checklistId, -- Включение ID чек-листа
+            p.enterprises AS enterpriseId -- Включение ID предприятия
+        FROM 
+            public.students s
+        JOIN 
+            public.practice p ON s.id = p.student
+        JOIN 
+            public.groups g ON s.groupid = g.id
+        WHERE 
+            g.groupid = @groupName";
+
+                using (var cmd = new NpgsqlCommand(sql, DatabaseContext.GetContext().connection))
+                {
+                    cmd.Parameters.AddWithValue("groupName", groupName);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int practiceId = Convert.ToInt32(reader["practiceId"]);
+                            int studentId = Convert.ToInt32(reader["studentId"]);
+                            string fullName = reader["full_name"].ToString();
+                            string placeOfPractice = reader["placeofpractice"].ToString();
+                            string headOfPractice = reader["headofpractice"].ToString();
+                            int checklistId = Convert.ToInt32(reader["checklistId"]); // Получение ID чек-листа
+                            int enterpriseId = reader["enterpriseId"] != DBNull.Value ? Convert.ToInt32(reader["enterpriseId"]) : 0; // Получение ID предприятия
+
+                            // Создаем объект StudentPractik и добавляем его в список
+                            practiceDetails.Add(new StudentPractik
+                            {
+                                Id = practiceId,
+                                StudentId = studentId,
+                                Student = fullName,
+                                Placeofpractice = placeOfPractice,
+                                Headofpractice = headOfPractice,
+                                CheckListId = checklistId, // Установка ID чек-листа
+                                EnterpriseId = enterpriseId // Установка ID предприятия
+                            });
+                        }
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show("Ошибка выполнения запроса: " + ex.Message);
+            }
+            finally
+            {
+                DatabaseContext.GetContext().CloseConnection();
+            }
+
+            return practiceDetails;
+        }
 
 
 
@@ -1162,21 +1277,33 @@ namespace ForPractik.ViewModel
             try
             {
                 string sql = @"
+WITH RankedPractices AS (
+    SELECT
+        p.id,
+        s.surname || ' ' || s.name || ' ' || s.patronymic AS fullname,
+        p.placeofpractice,
+        p.headofpractice,
+        p.numberOfHours,
+        ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY p.id) AS rn
+    FROM
+        public.practice p
+    JOIN
+        public.students s ON p.student = s.id
+    JOIN
+        public.groups g ON s.groupid = g.id
+    WHERE
+        g.groupid = @GroupId
+)
 SELECT
-    p.id,
-    s.surname || ' ' || s.name || ' ' || s.patronymic AS fullname,
-    p.placeofpractice,
-    p.headofpractice,
-    p.numberOfHours -- Включение столбца numberOfHours
+    id,
+    fullname,
+    placeofpractice,
+    headofpractice,
+    numberOfHours
 FROM
-    public.practice p
-JOIN
-    public.students s ON p.student = s.id
-JOIN
-    public.groups g ON s.groupid = g.id
+    RankedPractices
 WHERE
-    g.groupid = @GroupId";
-
+    rn = 1";
 
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
@@ -1210,6 +1337,7 @@ WHERE
 
             return practiceDataList;
         }
+
 
 
 
@@ -1566,12 +1694,416 @@ WHERE
             }
         }
 
+        public Specialty GetSpecialtyByGroupName(string groupId)
+        {
+            Specialty specialty = null;
 
+            OpenConnection();
 
+            try
+            {
+                string sql = @"
+        SELECT
+            s.specialization,
+            s.profession_codes,
+            s.qualification
+        FROM
+            public.groups g
+        JOIN
+            public.specialties s ON g.specialization = s.id
+        WHERE
+            g.groupid = @GroupId
+        LIMIT 1";  // Ограничиваем результат одной строкой
 
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("GroupId", groupId);
 
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            specialty = new Specialty
+                            {
+                                Specialization = reader.GetString(reader.GetOrdinal("specialization")),
+                                ProfessionCodes = reader.IsDBNull(reader.GetOrdinal("profession_codes")) ? null : reader.GetString(reader.GetOrdinal("profession_codes")),
+                                Qualification = reader.IsDBNull(reader.GetOrdinal("qualification")) ? null : reader.GetString(reader.GetOrdinal("qualification"))
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при получении данных: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
 
+            return specialty;
+        }
 
+        public void AddTeacher(string fullName)
+        {
+            try
+            {
+                OpenConnection(); // Открываем соединение с базой данных
+
+                string sql = "INSERT INTO public.teachers (full_name) VALUES (@FullName)";
+
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("FullName", fullName);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при добавлении куратора: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection(); // Закрываем соединение с базой данных
+            }
+        }
+
+        public void UpdateGroupTeacher(int groupId, int teacherId)
+        {
+            try
+            {
+                OpenConnection(); // Открываем соединение с базой данных
+
+                string sql = "UPDATE public.groups SET teacher_id = @TeacherId WHERE id = @GroupId";
+
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("TeacherId", teacherId);
+                    cmd.Parameters.AddWithValue("GroupId", groupId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении куратора у группы: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection(); // Закрываем соединение с базой данных
+            }
+        }
+
+        public string GetSpecializationByGroupName(string groupName)
+        {
+            string specialization = null;
+
+            try
+            {
+                OpenConnection(); // Открываем соединение с базой данных
+
+                string sql = @"
+            SELECT s.specialization
+            FROM public.groups g
+            JOIN public.specialties s ON g.specialization = s.id
+            WHERE g.groupid = @GroupName";
+
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("GroupName", groupName);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            specialization = reader["specialization"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при получении специализации по названию группы: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection(); // Закрываем соединение с базой данных
+            }
+
+            return specialization;
+        }
+
+        public void DeleteStudentsByGroup(int groupId)
+        {
+            try
+            {
+                OpenConnection(); // Открываем соединение с базой данных
+
+                string sql = "DELETE FROM public.practice WHERE student IN (SELECT id FROM public.students WHERE groupid = @GroupId)";
+
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("GroupId", groupId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении студентов из группы: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection(); // Закрываем соединение с базой данных
+            }
+        }
+
+        public string GetFullNameOfTheHeadByEnterpriseId(int enterpriseId)
+        {
+            string fullNameOfTheHead = string.Empty;
+
+            try
+            {
+                DatabaseContext.GetContext().OpenConnection();
+
+                string sql = @"
+        SELECT 
+            fullnameofthehead
+        FROM 
+            public.enterprises
+        WHERE 
+            id = @enterpriseId";
+
+                using (var cmd = new NpgsqlCommand(sql, DatabaseContext.GetContext().connection))
+                {
+                    cmd.Parameters.AddWithValue("enterpriseId", enterpriseId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            fullNameOfTheHead = reader["fullnameofthehead"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show("Ошибка выполнения запроса: " + ex.Message);
+            }
+            finally
+            {
+                DatabaseContext.GetContext().CloseConnection();
+            }
+
+            return fullNameOfTheHead;
+        }
+
+        public void UpdateAndDeleteGroupsAndStudents()
+        {
+            try
+            {
+                OpenConnection(); // Открываем соединение с базой данных
+
+                // Удаление связанных записей и групп/студентов 4 курса
+                string deleteSql = @"
+            -- Удаление записей из groupenterprises, связанных с группами 4 курса
+            DELETE FROM public.groupenterprises
+            WHERE group_id IN (
+                SELECT id FROM public.groups
+                WHERE substring(groupid FROM '^\D+-(\d)\d{2}')::int = 4
+            );
+
+            -- Удаление студентов 4 курса
+            DELETE FROM public.students
+            WHERE groupid IN (
+                SELECT id FROM public.groups
+                WHERE substring(groupid FROM '^\D+-(\d)\d{2}')::int = 4
+            );
+
+            -- Удаление групп 4 курса
+            DELETE FROM public.groups
+            WHERE substring(groupid FROM '^\D+-(\d)\d{2}')::int = 4;
+        ";
+
+                using (var deleteCmd = new NpgsqlCommand(deleteSql, connection))
+                {
+                    deleteCmd.ExecuteNonQuery();
+                }
+
+                // Обновление групп для студентов с 1 по 3 курс
+                string updateSql = @"
+            -- Обновление групп в таблице groups
+            UPDATE public.groups
+            SET groupid = regexp_replace(groupid, '(\D+-)(\d)(\d{2})', '\1' || (substring(groupid FROM '^\D+-(\d)\d{2}')::int + 1) || '\3')
+            WHERE substring(groupid FROM '^\D+-(\d)\d{2}')::int IN (1, 2, 3);
+
+            -- Обновление групп студентов в таблице students
+            UPDATE public.students
+            SET groupid = g.id
+            FROM (
+                SELECT id, 
+                       regexp_replace(groupid, '(\D+-)(\d)(\d{2})', '\1' || (substring(groupid FROM '^\D+-(\d)\d{2}')::int + 1) || '\3') AS new_groupid
+                FROM public.groups
+                WHERE substring(groupid FROM '^\D+-(\d)\d{2}')::int IN (1, 2, 3)
+            ) AS g
+            WHERE public.students.groupid = g.id;
+        ";
+
+                using (var updateCmd = new NpgsqlCommand(updateSql, connection))
+                {
+                    updateCmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при обновлении данных: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection(); // Закрываем соединение с базой данных
+            }
+        }
+
+        public void DeleteTeacherByFullName(string fullName)
+        {
+            try
+            {
+                OpenConnection(); // Открываем соединение с базой данных
+
+                // Проверка, назначен ли преподаватель группе
+                string checkDependencySql = @"
+            SELECT COUNT(*) FROM public.groups
+            WHERE teacher_id IN (
+                SELECT id FROM public.teachers
+                WHERE full_name = @FullName
+            );
+        ";
+
+                using (var checkCmd = new NpgsqlCommand(checkDependencySql, connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@FullName", fullName);
+                    long dependencyCount = (long)checkCmd.ExecuteScalar();
+
+                    if (dependencyCount > 0)
+                    {
+                        MessageBox.Show("Данный преподаватель назначен группе и не может быть удалён.");
+                        return; // Прекращаем выполнение метода, если есть зависимости
+                    }
+                }
+
+                // Удаление записей из зависимых таблиц (например, courses)
+                string deleteDependenciesSql = @"
+            DELETE FROM public.courses
+            WHERE teacher_id IN (
+                SELECT id FROM public.teachers
+                WHERE full_name = @FullName
+            );
+        ";
+
+                using (var deleteDependenciesCmd = new NpgsqlCommand(deleteDependenciesSql, connection))
+                {
+                    deleteDependenciesCmd.Parameters.AddWithValue("@FullName", fullName);
+                    deleteDependenciesCmd.ExecuteNonQuery();
+                }
+
+                // Удаление преподавателя по ФИО
+                string deleteTeacherSql = @"
+            DELETE FROM public.teachers
+            WHERE full_name = @FullName;
+        ";
+
+                using (var deleteTeacherCmd = new NpgsqlCommand(deleteTeacherSql, connection))
+                {
+                    deleteTeacherCmd.Parameters.AddWithValue("@FullName", fullName);
+                    int affectedRows = deleteTeacherCmd.ExecuteNonQuery();
+
+                    if (affectedRows == 0)
+                    {
+                        MessageBox.Show("Преподаватель с указанным ФИО не найден.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Преподаватель успешно удалён.");
+                    }
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении преподавателя: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection(); // Закрываем соединение с базой данных
+            }
+        }
+
+        public Requisites GetRequisitesByEnterpriseName(string enterpriseName)
+        {
+            Requisites requisites = null;
+
+            try
+            {
+                DatabaseContext.GetContext().OpenConnection();
+
+                string sql = @"
+SELECT 
+    r.id,
+    r.tin,
+    r.kpp,
+    r.oprn,
+    r.bic,
+    r.checkingaccount,
+    r.corporateaccount,
+    r.bank,
+    r.telephone,
+    r.address
+FROM 
+    public.enterprises e
+JOIN 
+    public.requisites r ON e.requisites = r.id
+WHERE 
+    e.companyname = @enterpriseName";
+
+                using (var cmd = new NpgsqlCommand(sql, DatabaseContext.GetContext().connection))
+                {
+                    cmd.Parameters.AddWithValue("enterpriseName", enterpriseName);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            requisites = new Requisites
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                Tin = reader.GetString(reader.GetOrdinal("tin")),
+                                Kpp = reader.GetString(reader.GetOrdinal("kpp")),
+                                Oprn = reader.GetString(reader.GetOrdinal("oprn")),
+                                Bic = reader.GetString(reader.GetOrdinal("bic")),
+                                CheckingAccount = reader.GetString(reader.GetOrdinal("checkingaccount")),
+                                CorporateAccount = reader.GetString(reader.GetOrdinal("corporateaccount")),
+                                Bank = reader.GetString(reader.GetOrdinal("bank")),
+                                Telephone = reader.GetString(reader.GetOrdinal("telephone")),
+                                Address = reader.GetString(reader.GetOrdinal("address"))
+                            };
+                        }
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show("Ошибка выполнения запроса: " + ex.Message);
+            }
+            finally
+            {
+                DatabaseContext.GetContext().CloseConnection();
+            }
+
+            return requisites;
+        }
 
 
 

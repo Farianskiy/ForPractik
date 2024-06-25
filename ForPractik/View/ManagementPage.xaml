@@ -98,6 +98,17 @@
             <Border BorderThickness="1 0 1 1" BorderBrush="#FF303031"/>
             <Border BorderThickness="0" BorderBrush="Black" Opacity="0.6"/>
             <StackPanel Orientation="Vertical" >
+                <!--
+<Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="btn_AddGroupStudentsPage"
+    Content="Управление группами студентов">
+</Button>
+-->
+
+
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"  Click="btn_StudentGroupUpdatePage"
+    Content="Управление переходом группы">
+                </Button>
+
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"  Click="btn_StudentManagementPage"
                     Content="Управление студентами">
                 </Button>
@@ -115,6 +126,12 @@
                 </Button>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"  Click="btn_AddCompanyPage"
                     Content="Управление предприятиями">
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"  Click="btn_AddTeachersPage"
+                    Content="Управление преподователями">
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"  Click="btn_UpdateTeachersPage"
+                    Content="Изменить куратора группы">
                 </Button>
             </StackPanel>
         </Grid>

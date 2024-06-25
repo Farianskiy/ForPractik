@@ -36,11 +36,6 @@ namespace ForPractik.View
             Manager.MainFrame.Navigate(new AddSpecialtiesPage());
         }
 
-        private void btn_AddGroupPage(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new AddGroupPage());
-        }
-
         private void btn_AddModulesPage(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddModulesPage());
@@ -54,6 +49,31 @@ namespace ForPractik.View
         private void btn_WorkingStudentsPage(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new WorkingStudentsPage());
+        }
+
+        private void btn_AddGroupStudentsPage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddGroupStudentsPage());
+        }
+
+        private void btn_AddGroupPage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddGroupPage());
+        }
+
+        private void btn_AddTeachersPage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddTeachersPage());
+        }
+
+        private void btn_UpdateTeachersPage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new UpdateTeachersPage());
+        }
+
+        private void btn_StudentGroupUpdatePage(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new StudentGroupUpdatePage());
         }
     }
 }

@@ -42,10 +42,18 @@ Style="{StaticResource BlueTextBlockStyle}"/>
 
                 <DataGrid x:Name="DGridStudentWordking" AutoGenerateColumns="False" Margin="0,10,10,0" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch"
-                  FontSize="16" RowHeight="40" IsReadOnly="True">
+                  FontSize="16"  IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ФИО студента" Binding="{Binding FullName}" Width="380"/>
-                        <DataGridTextColumn Header="Предприятие" Binding="{Binding CompanyName}" Width="395"/>
+                        <DataGridTextColumn Header="Предприятие" Binding="{Binding CompanyName}" Width="395">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Padding" Value="10,0,0,0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Руководитель предприятия" Binding="{Binding FullnameOfTheHead}" Width="395"/>
 
                     </DataGrid.Columns>

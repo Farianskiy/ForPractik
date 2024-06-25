@@ -29,7 +29,6 @@ namespace ForPractik.View
         public ProtocolPage()
         {
             InitializeComponent();
-            ComboSpecialties.ItemsSource = DatabaseContext.GetContext().GetSpecialties().AsEnumerable().ToList();
         }
 
         private void btn_Bacl(object sender, RoutedEventArgs e)
@@ -96,10 +95,10 @@ namespace ForPractik.View
                 docManager.InsertStudentsIntoTable(students);
 
                 // Заполняем шаблон документа данными
-                string special = ComboSpecialties.Text;
+                string special = DatabaseContext.GetContext().GetSpecializationByGroupName(groupName);
                 string chairman = ChairmanTextBox.Text;
                 string departmentHead = DepartmentHeadTextBox.Text;
-                string groupCurator = GroupCuratorTextBox.Text;
+                string groupCurator = DatabaseContext.GetContext().GetTeacherByGroupName(groupName);
                 string date = DateTextBox.Text;
                 docManager.FillDocumentWithData(groupName, chairman, departmentHead, groupCurator, date, students, special);
 
@@ -114,10 +113,8 @@ namespace ForPractik.View
                     // Очищаем поля выборов
                     FirstComboBox.SelectedIndex = -1;
                     SecondComboBox.SelectedIndex = -1; // Сброс выбранной группы
-                    ComboSpecialties.SelectedIndex = -1; // Сброс специальности
                     ChairmanTextBox.Text = ""; // Очистка текста
                     DepartmentHeadTextBox.Text = ""; // Очистка текста
-                    GroupCuratorTextBox.Text = ""; // Очистка текста
                     DateTextBox.Text = ""; // Очистка текста
                 }
             }

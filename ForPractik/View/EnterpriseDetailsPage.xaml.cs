@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using ForPractik.Model;
+using ForPractik.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +19,19 @@ using System.Windows.Shapes;
 namespace ForPractik.View
 {
     /// <summary>
-    /// Логика взаимодействия для OfficialLetterPage.xaml
+    /// Логика взаимодействия для EnterpriseDetailsPage.xaml
     /// </summary>
-    public partial class OfficialLetterPage : Page
+    public partial class EnterpriseDetailsPage : Page
     {
-        public OfficialLetterPage()
+        public EnterpriseDetailsPage(Requisites requisites)
         {
             InitializeComponent();
+            this.DataContext = requisites;
+        }
+
+        private void btn_Back(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.GoBack();
         }
     }
 }

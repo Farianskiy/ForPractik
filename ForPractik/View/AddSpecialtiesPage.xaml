@@ -17,17 +17,19 @@
             <StackPanel Orientation="Horizontal" Margin="50,20,0,10">
                 <TextBlock Text="Название специальности:" Width="200" VerticalAlignment="Center"
                    Style="{StaticResource BlueTextBlockStyle}"/>
-                <TextBox x:Name="txtSpecialtyName" Width="350" Margin="10"/>
+                <TextBox x:Name="txtSpecialtyName" Width="550" Margin="10"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="50,20,0,10">
-                <TextBlock Text="Код специальности:" Width="200" VerticalAlignment="Center"
-       Style="{StaticResource BlueTextBlockStyle}"/>
-                <TextBox x:Name="txtSpecialtyCode" Width="350" Margin="10"/>
-            </StackPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="50,20,0,10">
                 <TextBlock Text="Квалификация:" Width="200" VerticalAlignment="Center"
        Style="{StaticResource BlueTextBlockStyle}"/>
-                <TextBox x:Name="txtSpecialtyQualification" Width="350" Margin="10"/>
+                <TextBox x:Name="txtSpecialtyQualification" Width="450" Margin="10"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="50,20,0,10">
+                <TextBlock Text="Код специальности:" Width="200" VerticalAlignment="Center"
+Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox x:Name="txtSpecialtyCode" Width="350" Margin="10"/>
             </StackPanel>
 
         </StackPanel>

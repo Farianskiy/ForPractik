@@ -115,14 +115,8 @@
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="AccountingStudentsPractice"
                     Content="Студенты на практике">
                 </Button>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenAddGroup}"
-                    Content="Управление группами">
-                </Button>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenAddModules}"
-                    Content="Управление модулями">
-                </Button>
-                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenAddCompany}"
-                    Content="Управление предприятиями">
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Click="ClosingPracticePage"
+                    Content="Закрытие учета практики">
                 </Button>
             </StackPanel>
         </Grid>

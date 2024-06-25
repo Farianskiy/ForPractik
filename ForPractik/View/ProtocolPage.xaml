@@ -40,14 +40,7 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Специальность:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
-        Style="{StaticResource BlueTextBlockStyle}"/>
-                    <ComboBox x:Name="ComboSpecialties" Width="200" Margin="10"
-    Style="{StaticResource ComboBoxFlatStyle}"/>
-                </StackPanel>
-            </StackPanel>
+            
 
 
             <StackPanel Orientation="Horizontal">
@@ -60,8 +53,7 @@
             </StackPanel>
 
             <StackPanel>
-                <TextBlock Text="Члены комиссии" FontSize="15" FontWeight="Bold" 
-   Margin="20,10,0,20"/>
+                
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock  Text="Зав. отделением:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
@@ -71,14 +63,7 @@ Style="{StaticResource BlueTextBlockStyle}"/>
 
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-
-                    <TextBlock  Text="Куратор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
-Style="{StaticResource BlueTextBlockStyle}"/>
-
-                    <TextBox x:Name="GroupCuratorTextBox" Width="200" Margin="10"/>
-
-                </StackPanel>
+                
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">

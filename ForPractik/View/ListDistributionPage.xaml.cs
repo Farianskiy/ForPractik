@@ -30,7 +30,6 @@ namespace ForPractik.View
         public ListDistributionPage()
         {
             InitializeComponent();
-            ComboSpecialties.ItemsSource = DatabaseContext.GetContext().GetSpecialties().AsEnumerable().ToList();
         }
 
         private void btn_Bacl(object sender, RoutedEventArgs e)
@@ -94,7 +93,7 @@ namespace ForPractik.View
                 // Получаем выбранную группу из ComboBox
                 string groupName = SecondComboBox.Text;
 
-                string special = ComboSpecialties.Text;
+                string special = DatabaseContext.GetContext().GetSpecializationByGroupName(groupName);
 
                 List<PracticeData> practiceDataList = DatabaseContext.GetContext().GetPracticeDataByGroup(groupName);
 
@@ -136,7 +135,7 @@ namespace ForPractik.View
                     // Очищаем поля выборов
                     FirstComboBox.SelectedIndex = -1;
                     SecondComboBox.SelectedIndex = -1;
-                    ComboSpecialties.SelectedIndex = -1;
+                    DateTextBox.Text = "";
                 }
             }
         }

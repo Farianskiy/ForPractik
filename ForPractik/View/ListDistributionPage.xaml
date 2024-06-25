@@ -40,14 +40,7 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Специальность:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
-        Style="{StaticResource BlueTextBlockStyle}"/>
-                    <ComboBox x:Name="ComboSpecialties" Width="200" Margin="10"
-    Style="{StaticResource ComboBoxFlatStyle}"/>
-                </StackPanel>
-            </StackPanel>
+            
 
 
             <StackPanel Orientation="Horizontal">

@@ -118,8 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AttestationListOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AttestationListOK.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AttestationListPK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AttestationListPK.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LetterOfficial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LetterOfficial.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ListContactPhone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ListContactPhone.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ListDistribution" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ListDistribution.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ProgramEducationalPractice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProgramEducationalPractice.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ProgramIndustrialPractice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProgramIndustrialPractice.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ProtocolTB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProtocolTB.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -63,9 +63,69 @@ namespace ForPractik.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        internal static byte[] AttestationListOK {
+            get {
+                object obj = ResourceManager.GetObject("AttestationListOK", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] AttestationListPK {
+            get {
+                object obj = ResourceManager.GetObject("AttestationListPK", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] LetterOfficial {
+            get {
+                object obj = ResourceManager.GetObject("LetterOfficial", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] ListContactPhone {
+            get {
+                object obj = ResourceManager.GetObject("ListContactPhone", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         internal static byte[] ListDistribution {
             get {
                 object obj = ResourceManager.GetObject("ListDistribution", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] ProgramEducationalPractice {
+            get {
+                object obj = ResourceManager.GetObject("ProgramEducationalPractice", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] ProgramIndustrialPractice {
+            get {
+                object obj = ResourceManager.GetObject("ProgramIndustrialPractice", resourceCulture);
                 return ((byte[])(obj));
             }
         }

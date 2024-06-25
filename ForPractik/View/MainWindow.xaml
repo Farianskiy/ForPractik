@@ -173,13 +173,16 @@
 
         <Frame Grid.ColumnSpan="2" Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden"/>
 
+        
+
         <Grid Name="TopMenu" Grid.Row="0" Grid.ColumnSpan="2">
             <Border BorderThickness="1" BorderBrush="#FF303031" Background="Transparent" MouseDown="Border_MouseDown">
                 <StackPanel Orientation="Horizontal">
                     <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="УПРАВЛЕНИЕ" Click="btn_ManagementPage"></Button>
                     <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="ДОГОВОРА" Click="btn_AgreementPage"></Button>
                     <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="ПРАКТИКА" Click="btn_PracticePage"></Button>
-                    <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="ОТЧЕТ"></Button>
+
+                    <Button Content="X" Margin="680 0 0 0" FontSize="22" Grid.Column="1" Style="{StaticResource GelButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="35" Height="35" Click="ExitButton_Click"/>
                 </StackPanel>
             </Border>
         </Grid>

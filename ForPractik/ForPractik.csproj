@@ -17,6 +17,23 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Farianskiy\Desktop\Диплом\Программа\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,9 +54,27 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>08084BA7437E48FB7244CEB17F030D7105E90C17</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ForPractik_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>time_chart_business_calender_management_icon_263056.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DeepMorphy, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeepMorphy.2.0.3\lib\netstandard2.0\DeepMorphy.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.3.0.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
@@ -58,6 +93,9 @@
     </Reference>
     <Reference Include="GSF.Core, Version=2.4.28.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GSF.Core.2.4.28\lib\net46\GSF.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.14.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.14.1\lib\netstandard2.0\Humanizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -131,6 +169,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TensorFlowSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TensorFlowSharp.1.12.0\lib\net471\TensorFlowSharp.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -146,6 +187,8 @@
     <Compile Include="Model\PracticeData.cs" />
     <Compile Include="Model\PracticeModule.cs" />
     <Compile Include="Model\PracticePeriod.cs" />
+    <Compile Include="Model\Requisites.cs" />
+    <Compile Include="Model\Specialty.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Model\StudentEnterpriseDetails.cs" />
     <Compile Include="Model\StudentPractik.cs" />
@@ -161,6 +204,9 @@
     <Compile Include="View\AddGroupPage.xaml.cs">
       <DependentUpon>AddGroupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddGroupStudentsPage.xaml.cs">
+      <DependentUpon>AddGroupStudentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddModulesPage.xaml.cs">
       <DependentUpon>AddModulesPage.xaml</DependentUpon>
     </Compile>
@@ -170,17 +216,38 @@
     <Compile Include="View\AddStudentPage.xaml.cs">
       <DependentUpon>AddStudentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddTeachersPage.xaml.cs">
+      <DependentUpon>AddTeachersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AgreementPage.xaml.cs">
       <DependentUpon>AgreementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AttestationListOKPage.xaml.cs">
+      <DependentUpon>AttestationListOKPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AttestationListPKPage.xaml.cs">
+      <DependentUpon>AttestationListPKPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClosingPracticePage.xaml.cs">
+      <DependentUpon>ClosingPracticePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditpracticePage.xaml.cs">
       <DependentUpon>EditpracticePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EnterpriseDetailsPage.xaml.cs">
+      <DependentUpon>EnterpriseDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EvaluationSheetPage.xaml.cs">
       <DependentUpon>EvaluationSheetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FormLetterPage.xaml.cs">
+      <DependentUpon>FormLetterPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LetterOfficialPage.xaml.cs">
       <DependentUpon>LetterOfficialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListContactPhonePage.xaml.cs">
+      <DependentUpon>ListContactPhonePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ListDistributionPage.xaml.cs">
       <DependentUpon>ListDistributionPage.xaml</DependentUpon>
@@ -188,20 +255,29 @@
     <Compile Include="View\ManagementPage.xaml.cs">
       <DependentUpon>ManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OfficialLetterPage.xaml.cs">
-      <DependentUpon>OfficialLetterPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\OpeningPracticePage.xaml.cs">
       <DependentUpon>OpeningPracticePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PracticePage.xaml.cs">
       <DependentUpon>PracticePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProgramEducationalPracticePage.xaml.cs">
+      <DependentUpon>ProgramEducationalPracticePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProgramIndustrialPracticePage.xaml.cs">
+      <DependentUpon>ProgramIndustrialPracticePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProtocolPage.xaml.cs">
       <DependentUpon>ProtocolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StudentGroupUpdatePage.xaml.cs">
+      <DependentUpon>StudentGroupUpdatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StudentManagementPage.xaml.cs">
       <DependentUpon>StudentManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdateTeachersPage.xaml.cs">
+      <DependentUpon>UpdateTeachersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkingStudentsPage.xaml.cs">
       <DependentUpon>WorkingStudentsPage.xaml</DependentUpon>
@@ -218,6 +294,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddGroupStudentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddModulesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,7 +310,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddTeachersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AgreementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AttestationListOKPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AttestationListPKPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClosingPracticePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,11 +334,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EnterpriseDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EvaluationSheetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FormLetterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LetterOfficialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ListContactPhonePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,10 +375,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\OfficialLetterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\OpeningPracticePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,11 +383,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProgramEducationalPracticePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProgramIndustrialPracticePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProtocolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\StudentGroupUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\StudentManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpdateTeachersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,11 +431,18 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="ForPractik_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\LetterOfficial.docx" />
+    <Resource Include="Resources\ProgramEducationalPractice.docx" />
+    <Resource Include="Resources\ProgramIndustrialPractice.docx" />
+    <Resource Include="Resources\AttestationListPK.docx" />
+    <Resource Include="Resources\AttestationListOK.docx" />
+    <Resource Include="Resources\ListContactPhone.docx" />
     <Resource Include="Resources\ProtocolTB.docx" />
     <Resource Include="Resources\ListDistribution.docx" />
   </ItemGroup>
@@ -323,7 +450,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Res\" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -345,6 +481,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="time_chart_business_calender_management_icon_263056.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -352,6 +491,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\TensorFlowSharp.1.12.0\build\net45\TensorFlowSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\TensorFlowSharp.1.12.0\build\net45\TensorFlowSharp.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\TensorFlowSharp.1.12.0\build\net45\TensorFlowSharp.targets" Condition="Exists('..\packages\TensorFlowSharp.1.12.0\build\net45\TensorFlowSharp.targets')" />
 </Project>

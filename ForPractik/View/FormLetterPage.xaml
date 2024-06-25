@@ -1,0 +1,138 @@
+﻿<Page x:Class="ForPractik.View.FormLetterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="FormLetterPage" Background="White">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Margin="0 10 0 0">
+                    <TextBlock Text="Информация подсказка" FontSize="18" FontWeight="Bold" 
+Style="{StaticResource BlueTextBlockStyle}" Margin="0,0,0,10"
+        HorizontalAlignment="Center"/>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Студент:" HorizontalAlignment="Center" VerticalAlignment="Center"
+       Style="{StaticResource BlueTextBlockStyle}" />
+                        <TextBox Text="{Binding Student}" IsReadOnly="True" Width="750"/>
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Место практики:" HorizontalAlignment="Center" VerticalAlignment="Center"
+Style="{StaticResource BlueTextBlockStyle}" />
+                        <TextBox Text="{Binding Placeofpractice}" IsReadOnly="True" Width="750" />
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Руководитель практики:" HorizontalAlignment="Center" VerticalAlignment="Center"
+Style="{StaticResource BlueTextBlockStyle}" />
+                        <TextBox Text="{Binding Headofpractice}" IsReadOnly="True" Width="750" />
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Руководитель предприятия:" HorizontalAlignment="Center" VerticalAlignment="Center"
+Style="{StaticResource BlueTextBlockStyle}" />
+                        <TextBox Text="{Binding EnterpriseId}" IsReadOnly="True" Width="750" />
+                    </StackPanel>
+                    
+                    <!-- Добавьте другие элементы управления, если необходимо -->
+                </StackPanel>
+
+                <StackPanel Margin="0 20 0 0">
+                    <TextBlock Text="Формирование блока текста в провом угле документа" FontSize="18" FontWeight="Bold" 
+    Style="{StaticResource BlueTextBlockStyle}" Margin="0,0,0,10"
+            HorizontalAlignment="Center"/>
+                    <StackPanel  Margin="0,15,0,10">
+                        <TextBlock Text="Название должности кому пишете письмо:" Width="300" VerticalAlignment="Center"
+       Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="txtDirector" Width="750" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel  Margin="0,0,0,10">
+                        <TextBlock Text="Название организации которой пишете:" Width="300" VerticalAlignment="Center"
+Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="txtOrganization" Width="750" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel  Margin="0,0,0,10">
+                        <TextBlock Text="ФИО того кому пишется письмо:" Width="300" VerticalAlignment="Center" 
+Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="txtHeadOrganization" Width="750" Margin="10"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="0 10 0 0">
+                    <TextBlock Text="Формирование основного блока текста письма" FontSize="18" FontWeight="Bold" 
+    Style="{StaticResource BlueTextBlockStyle}" Margin="0,0,0,10"
+            HorizontalAlignment="Center"/>
+                    <StackPanel  Margin="0,15,0,10">
+                        <TextBlock Text="Просим Вас рассмотреть возможность прохождения учебной и производственной практик в:" Width="640" VerticalAlignment="Center"
+       Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="txtOrganiz" Width="750" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel  Margin="0,0,0,10">
+                        <TextBlock Text="Студентом в творительном падеже:" Width="300" VerticalAlignment="Center"
+Style="{StaticResource BlueTextBlockStyle}"/>
+                        <TextBox x:Name="txtStudent" Width="750" Margin="10"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Заместитель директора по М и ПП:" Width="300" VerticalAlignment="Center" 
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                        <!-- Комбобокс с автозаполнением и кнопкой добавления -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                            <ComboBox x:Name="cmbZamDirector" Width="300" IsEditable="True" Text="Выберите или добавьте новое..."
+   ItemsSource="{Binding Rukovoditeli}" Style="{StaticResource ComboBoxFlatStyle}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Content="Добавить" Margin="5" Width="175" Height="30" Foreground="Black" FontSize="20" Click="SaveZamDirectors_Click" Style="{StaticResource GelButton}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Руководителем практики от образовательной организации является:" Width="300" VerticalAlignment="Center" 
+               Style="{StaticResource BlueTextBlockStyle}"/>
+
+                        <!-- Комбобокс с автозаполнением и кнопкой добавления -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                            <ComboBox x:Name="cmbRukovoditel" Width="300" IsEditable="True" Text="Выберите или добавьте новое..."
+                  ItemsSource="{Binding Rukovoditeli}" Style="{StaticResource ComboBoxFlatStyle}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Content="Добавить" Margin="5" Width="175" Height="30" Foreground="Black" FontSize="20" Click="AddRukovoditel_Click" Style="{StaticResource GelButton}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    
+                </StackPanel>
+
+                <StackPanel>
+                    <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0 20 0 20" HorizontalAlignment="Center">
+                        <Button Click="btn_Back" Width="175" Height="30"
+Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
+Content="Назад" Margin="10 0 10 0" >
+                        </Button>
+                        <Button Click="btn_Add" Width="175" Height="30"
+Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
+Content="Заполнить" Margin="150 0 10 0" >
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        
+    </Grid>
+</Page>

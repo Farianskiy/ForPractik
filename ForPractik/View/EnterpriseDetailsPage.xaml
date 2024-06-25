@@ -1,0 +1,85 @@
+﻿<Page x:Class="ForPractik.View.EnterpriseDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ForPractik.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="EnterpriseDetailsPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Реквизиты подсказка" FontSize="18" FontWeight="Bold" 
+               Style="{StaticResource BlueTextBlockStyle}" Margin="0,0,0,10"
+               HorizontalAlignment="Center"/>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="ИНН:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}" />
+                <TextBox Text="{Binding Tin}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="КПП:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox Text="{Binding Kpp}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="ОГРН:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}" />
+                <TextBox Text="{Binding Oprn}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="БИК:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}" />
+                <TextBox Text="{Binding Bic}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="Расчетный счет:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox Text="{Binding CheckingAccount}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="Корпоративный счет:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}" />
+                <TextBox Text="{Binding CorporateAccount}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="Банк:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox Text="{Binding Bank}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 0" HorizontalAlignment="Center">
+                <TextBlock Text="Телефон:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox Text="{Binding Telephone}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 10" HorizontalAlignment="Center">
+                <TextBlock Text="Адрес:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource BlueTextBlockStyle}"/>
+                <TextBox Text="{Binding Address}" IsReadOnly="True" Width="750" HorizontalAlignment="Center" 
+                 TextAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <Button Click="btn_Back" Width="175" Height="30"
+Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
+Content="Назад" Margin="10 0 10 0" >
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

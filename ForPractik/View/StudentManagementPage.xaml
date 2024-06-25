@@ -5,35 +5,65 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ForPractik.View"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1100"
-      Title="StudentManagementPage" IsVisibleChanged="Page_IsVisibleChanged">
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="StudentManagementPage">
 
     <Grid>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Hidden" 
-                      VerticalScrollBarVisibility="Hidden">
-            
+
+
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
+
             <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
-                
+
+                <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
+
+                    <TextBlock Text="Выбор курса:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                    <ComboBox x:Name="FirstComboBox" Width="200" Margin="10" SelectionChanged="FirstComboBox_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}">
+                        <ComboBoxItem Content="1 курс"/>
+                        <ComboBoxItem Content="2 курс"/>
+                        <ComboBoxItem Content="3 курс"/>
+                        <ComboBoxItem Content="4 курс"/>
+                    </ComboBox>
+
+                    <StackPanel Orientation="Horizontal" Margin="40 0 0 0">
+
+                        <TextBlock Text="Выбор группы:" VerticalAlignment="Center" Height="30" Width="175" Margin="20 0 0 0"
+Style="{StaticResource BlueTextBlockStyle}"/>
+
+                        <ComboBox x:Name="SecondComboBox" Width="200" Margin="10" 
+                                    Style="{StaticResource ComboBoxFlatStyle}" 
+                                  SelectionChanged="SecondComboBox_SelectionChanged">
+
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+
+            <ScrollViewer>
                 <DataGrid x:Name="DGridStudent" AutoGenerateColumns="False" Margin="0,10,10,0" 
-                          CanUserAddRows="False" HorizontalAlignment="Stretch" IsReadOnly="True"
-                          FontSize="16" RowHeight="30" >
+              CanUserAddRows="False" HorizontalAlignment="Stretch" IsReadOnly="True"
+              FontSize="16" RowHeight="30" Height="460" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}"  Width="356">
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}"  Width="375">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Padding" Value="10,0,0,0"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="356">
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="375">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Padding" Value="10,0,0,0"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="356">
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="375">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Padding" Value="10,0,0,0"/>
@@ -42,29 +72,29 @@
                         </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
+            </ScrollViewer>
 
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Center">
-                    <Button Click="btn_Back" Width="175" Height="30"
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Center">
+                <Button Click="btn_Back" Width="175" Height="30"
                     Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
                     Content="Назад" Margin="10 0 10 0" >
-                    </Button>
-                    <Button Click="btn_AddStudentPage" Width="175" Height="30"
+                </Button>
+                <Button Click="btn_AddStudentPage" Width="175" Height="30"
                     Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
                 Content="Добавить" Margin="70,0,10,0">
-                    </Button>
-                    <Button Click="btn_EditStudent"  Width="175" Height="30"
+                </Button>
+                <Button Click="btn_EditStudent"  Width="175" Height="30"
                     Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
                     Content="Редактировать" Margin="70,0,10,0">
-                    </Button>
-                    <Button Click="btn_DeleteStudent" Width="175" Height="30"
+                </Button>
+                <Button Click="btn_DeleteStudent" Width="175" Height="30"
                     Style="{StaticResource GelButton}" Foreground="Black" FontSize="20"
                     Content="Удалить" Margin="70,0,10,0">
-                    </Button>
-                </StackPanel>
-
+                </Button>
             </StackPanel>
-        </ScrollViewer>
 
-        
+        </StackPanel>
+
+
     </Grid>
 </Page>

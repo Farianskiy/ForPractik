@@ -146,12 +146,6 @@ namespace ForPractik.View
             }
         }
 
-
-
-
-
-
-
         private void btn_Grade(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
@@ -168,6 +162,40 @@ namespace ForPractik.View
                 }
             }
         }
+
+        private void btn_Enterprise_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем выбранную строку из DataGrid
+            var selectedPractice = DGridStudentPractik.SelectedItem as StudentPractik;
+
+            if (selectedPractice != null)
+            {
+                // Получаем название организации
+                string organizationName = selectedPractice.Placeofpractice;
+
+                // Запрашиваем реквизиты из базы данных
+                Requisites requisites = DatabaseContext.GetContext().GetRequisitesByEnterpriseName(organizationName);
+
+                // Проверяем, получили ли мы реквизиты
+                if (requisites != null)
+                {
+                    // Создаем экземпляр страницы и передаем данные
+                    EnterpriseDetailsPage detailsPage = new EnterpriseDetailsPage(requisites);
+                    this.NavigationService.Navigate(detailsPage);
+                }
+                else
+                {
+                    MessageBox.Show("Реквизиты для выбранной организации не найдены.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите организацию.");
+            }
+        }
+
+
+
 
     }
 }

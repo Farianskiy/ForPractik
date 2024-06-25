@@ -24,16 +24,21 @@
             <TextBox  Name="txtGroupName" Text="{Binding Group}" Tag="Наименование группы" Style="{StaticResource placeHolder}" Margin="0 0 0 10"></TextBox>
             
             <!-- Кнопки -->
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0 20 0 0">
+            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 20 0 0">
 
                 <Button Content="Назад" Style="{StaticResource GelButton}" Width="175" Height="30"
                     Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
-                    HorizontalAlignment="Left" Margin="160 0 0 30" Click="btn_Back">
+                    HorizontalAlignment="Left" Margin="0 0 0 30" Click="btn_Back">
+                </Button>
+
+                <Button Content="Добавить несколько" Style="{StaticResource GelButton}" Width="215" Height="30"
+    Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
+    HorizontalAlignment="Left" Margin="150 0 0 30" Click="btn_AddStudentListSave">
                 </Button>
 
                 <Button Content="Добавить" Style="{StaticResource GelButton}" Width="175" Height="30"
                     Foreground="Black" FontSize="20" VerticalAlignment="Bottom"
-                    HorizontalAlignment="Left" Margin="450 0 0 30" Click="btn_AddStudentSave">
+                    HorizontalAlignment="Left" Margin="150 0 0 30" Click="btn_AddStudentSave">
                 </Button>
 
             </StackPanel>
